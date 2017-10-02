@@ -9,5 +9,5 @@ It checks the view dimensions in onDraw(), allowing it to automatically respond 
 </p>
 
 <p>
-This project contains code I wrote working for eCompliance Inc, and is realseased with their permission.
+This project contains code I wrote working for eCompliance Inc, and is released with their permission.
 </p>
