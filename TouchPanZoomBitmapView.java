@@ -43,65 +43,65 @@ public class TouchPanZoomBitmapView extends PanZoomBitmapView implements Runnabl
         {
         sgd = new ScaleGestureDetector
             (
-                ctx,
-                new ScaleGestureDetector.SimpleOnScaleGestureListener()
+            ctx,
+            new ScaleGestureDetector.SimpleOnScaleGestureListener()
+                {
+
+                public boolean onScale(ScaleGestureDetector detector)
                     {
-
-                    public boolean onScale(ScaleGestureDetector detector)
-                        {
-                        momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
-                        zoom(detector.getScaleFactor(), (int)detector.getFocusX(), (int)detector.getFocusY());
-                        return true;
-                        }
-
+                    momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
+                    zoom(detector.getScaleFactor(), (int)detector.getFocusX(), (int)detector.getFocusY());
+                    return true;
                     }
+
+                }
             );
         gd = new GestureDetector
             (
-                ctx,
-                new GestureDetector.SimpleOnGestureListener()
+            ctx,
+            new GestureDetector.SimpleOnGestureListener()
+                {
+
+                public boolean onDoubleTap(MotionEvent e1)
                     {
-
-                    public boolean onDoubleTap(MotionEvent e1)
-                        {
-                        momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
-                        if (isZoomedToFit())
-                            zoomToPixel1To1((int)e1.getX(), (int)e1.getY());
-                        else
-                            zoomToFit();
-                        return true;
-                        }
-
-                    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-                        {
-                        momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
-                        pan((int)distanceX, (int)distanceY);
-                        return true;
-                        }
-
-                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-                        {
-                        momentumX = -MOMENTUM_SCALE*velocityX;
-                        if ((int)momentumX == 0) momentumX = 0.0f;
-                        momentumY = -MOMENTUM_SCALE*velocityY;
-                        if ((int)momentumY == 0) momentumY = 0.0f;
-                        if (momentumX != 0.0f || momentumY != 0.0f)
-                            {
-                            float h = (float)Math.sqrt(velocityX*velocityX + velocityY*velocityY);
-                            momentumDeltaX = MOMENTUM_DELTA*velocityX/h;
-                            momentumDeltaY = MOMENTUM_DELTA*velocityY/h;
-                            getHandler().postDelayed(TouchPanZoomBitmapView.this, FRAME_INTERVAL_MILLIS);
-                            }
-                        return true;
-                        }
-
-                    public boolean onDown(MotionEvent e)
-                        {
-                        momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
-                        return super.onDown(e);
-                        }
-
+                    momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
+                    if (isZoomedToFit())
+                        zoomToPixel1To1((int)e1.getX(), (int)e1.getY());
+                    else
+                        zoomToFit();
+                    return true;
                     }
+
+                public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+                    {
+                    momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
+                    pan((int)distanceX, (int)distanceY);
+                    return true;
+                    }
+
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+                    {
+                    momentumX = -MOMENTUM_SCALE*velocityX;
+                    if ((int)momentumX == 0) momentumX = 0.0f;
+                    momentumY = -MOMENTUM_SCALE*velocityY;
+                    if ((int)momentumY == 0) momentumY = 0.0f;
+                    if (momentumX != 0.0f || momentumY != 0.0f)
+                        {
+                        float h = (float)Math.sqrt(velocityX*velocityX + velocityY*velocityY);
+                        momentumDeltaX = MOMENTUM_DELTA*velocityX/h;
+                        momentumDeltaY = MOMENTUM_DELTA*velocityY/h;
+                        getHandler().postDelayed(TouchPanZoomBitmapView.this, FRAME_INTERVAL_MILLIS);
+                        }
+                    return true;
+                    }
+
+                public boolean onDown(MotionEvent e)
+                    {
+                    momentumX = momentumY = momentumDeltaX = momentumDeltaY = 0.0f;
+                    return super.onDown(e);
+                    }
+
+                }
             );
         }
 
