@@ -16,18 +16,18 @@ public class PanZoomBitmapView extends View
      */
     public enum MaxZoomOut
         {
-            /**
-             * Set the maximum zoom out to the point at which the image occupies approximately 1/8th of the view linearly.
-             */
-            BY8,
-            /**
-             * Set the maximum zoom out to the point at which the entire image just fits in the view
-             */
-            FITS,
-            /**
-             * Set the maximum zoom out to whichever of MaxZoomOut.FITS or pixel 1-to-1 makes the image appear smallest in te view.
-             */
-            FITS_OR_1TO1
+        /**
+         * Set the maximum zoom out to the point at which the image occupies approximately 1/8th of the view linearly.
+         */
+        BY8,
+        /**
+         * Set the maximum zoom out to the point at which the entire image just fits in the view
+         */
+        FITS,
+        /**
+         * Set the maximum zoom out to whichever of MaxZoomOut.FITS or pixel 1-to-1 makes the image appear smallest in te view.
+         */
+        FITS_OR_1TO1
         }
 
     private static final int MIN_BM_RECT_DIMENSION = 32;
